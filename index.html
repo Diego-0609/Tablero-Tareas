@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Tareas y Hábitos</title>
+  <!-- Vinculación del archivo CSS (Integrante 2) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO PRINCIPAL -->
+  <header class="app-header">
+    <div class="header-container">
+      <h1>Mi Tablero de Tareas</h1>
+      <!-- Botón para Modo Oscuro (Integrante 4) -->
+      <button id="theme-toggle" class="btn-icon" aria-label="Cambiar tema">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <!-- SECCIÓN: FORMULARIO DE CREACIÓN DE TAREAS (Integrante 1) -->
+    <section class="task-form-section">
+      <form id="task-form" class="task-form">
+        <h2>Nueva Tarea / Hábito</h2>
+
+        <!-- Campo oculto agregado por Integrante 4: guarda el id de la
+             tarea cuando se está EDITANDO (vacío = se va a crear una nueva).
+             No se ve en pantalla, no afecta el diseño. -->
+        <input type="hidden" id="task-editing-id" value="">
+
+        <div class="form-group">
+          <label for="task-title">Título</label>
+          <input 
+            type="text" 
+            id="task-title" 
+            placeholder="Ej. Estudiar para el examen..." 
+            required 
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="task-category">Categoría / Estado inicial</label>
+            <select id="task-category">
+              <option value="todo">Por hacer</option>
+              <option value="in-progress">En proceso</option>
+              <option value="done">Terminado</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="task-priority">Prioridad</label>
+            <select id="task-priority">
+              <option value="low">Baja</option>
+              <option value="medium" selected>Media</option>
+              <option value="high">Alta</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-add-task" class="btn-primary">
+          + Agregar Tarea
+        </button>
+      </form>
+    </section>
+
+    <!-- SECCIÓN: FILTROS Y BÚSQUEDA (Integrante 3) -->
+    <section class="controls-section">
+      <div class="search-bar">
+        <label for="search-input" class="sr-only">Buscar tarea</label>
+        <input 
+          type="search" 
+          id="search-input" 
+          placeholder="🔍 Buscar tarea por nombre..." 
+        />
+      </div>
+
+      <div class="filter-buttons">
+        <button type="button" class="btn-filter active" data-filter="all">Todas</button>
+        <button type="button" class="btn-filter" data-filter="todo">Por hacer</button>
+        <button type="button" class="btn-filter" data-filter="in-progress">En proceso</button>
+        <button type="button" class="btn-filter" data-filter="done">Terminadas</button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: ESTADÍSTICAS Y PROGRESO (Integrante 4) -->
+    <section class="stats-section">
+      <div class="stat-card">
+        <h3>Progreso General</h3>
+        <progress id="progress-bar" value="0" max="100"></progress>
+        <span id="progress-text">0% completado</span>
+      </div>
+      <div class="stat-summary">
+        <p>Total: <strong id="total-tasks-count">0</strong></p>
+        <p>Pendientes: <strong id="pending-tasks-count">0</strong></p>
+        <p>Completadas: <strong id="completed-tasks-count">0</strong></p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: TABLERO / COLUMNAS (Integrante 1 & 3) -->
+    <section class="board-section">
+      
+      <!-- Columna 1: Por Hacer -->
+      <article class="board-column" id="col-todo">
+        <header class="column-header">
+          <h2>Por Hacer</h2>
+          <span class="task-count" id="count-todo">0</span>
+        </header>
+        <ul class="task-list" id="list-todo"></ul>
+      </article>
+
+      <!-- Columna 2: En Proceso -->
+      <article class="board-column" id="col-in-progress">
+        <header class="column-header">
+          <h2>En Proceso</h2>
+          <span class="task-count" id="count-in-progress">0</span>
+        </header>
+        <ul class="task-list" id="list-in-progress"></ul>
+      </article>
+
+      <!-- Columna 3: Terminado -->
+      <article class="board-column" id="col-done">
+        <header class="column-header">
+          <h2>Terminado</h2>
+          <span class="task-count" id="count-done">0</span>
+        </header>
+        <ul class="task-list" id="list-done"></ul>
+      </article>
+
+    </section>
+
+  </main>
+
+
+  <!-- Vinculación del archivo JS (Integrante 3 y 4) -->
+  <script src="script.js"></script>
+</body>
+</html>
